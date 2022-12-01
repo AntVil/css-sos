@@ -1,0 +1,31 @@
+main>button{
+    margin: 5px;
+    border: 0;
+    border-radius: 5px;
+    background-color: var(--theme-color-0);
+}
+
+main>button:hover{
+    background-color: var(--theme-color-3);
+    cursor: pointer;
+}
+
+#controls{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: auto 0;
+    padding: 5px;
+}
+
+#controls>*{
+    width: 100%;
+}
+
+#output{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}

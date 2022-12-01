@@ -1,0 +1,59 @@
+:root{
+    --screen-width: 100vw;
+    --screen-height: 100vh;
+    --header-height: 50px;
+    --footer-height: 50px;
+}
+
+*{
+    color: var(--font-color);
+    box-sizing: border-box;
+}
+
+body{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: var(--header-height) auto var(--footer-height);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: var(--screen-width);
+    height: var(--screen-height);
+    margin: 0;
+    overflow: hidden;
+}
+
+body>header, body>footer{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-column: 1 / span 2;
+    background-color: var(--theme-color-0);
+}
+
+body>header>h1{
+    margin: 0;
+    text-align: center;
+}
+
+body>nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--theme-color-1);
+    gap: 5px;
+}
+
+body>nav>*{
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0 15px;
+}
+
+body>main{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+    background-color: var(--theme-color-2);
+}
