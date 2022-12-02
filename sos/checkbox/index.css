@@ -83,3 +83,105 @@ main>button:hover{
     height: 40px;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cg transform-origin='12 12' transform='scale(0.5)'%3E%3Cline x1='4' x2='20' y1='4' y2='20' stroke='%23000' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='4' x2='20' y1='20' y2='4' stroke='%23000' stroke-width='3' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E");
 }
+
+body>main>*:last-child{
+    position: relative;
+}
+
+body>main>*:last-child:focus::before{
+    content: "";
+    animation-name: clipboardTextAnimation;
+    animation-duration: 1.1s;
+    animation-iteration-count: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: unset;
+    text-align: center;
+    padding: 0;
+    opacity: 0;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+body>main>*:last-child:focus::after{
+    content: "";
+    animation-name: clipboardDecorAnimation;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    left: 0;
+    top: 0;
+    transform: unset;
+    border: 0 solid transparent;
+    background-color: transparent;
+}
+
+@keyframes clipboardTextAnimation {
+    0%{
+        content: "copied";
+        opacity: 0;
+        background-color: var(--theme-color-3);
+
+        left: 50%;
+        top: -10px;
+        transform: translate(-50%, calc(-100%));
+        padding: 5px;
+    }
+    50%{
+        content: "copied";
+        opacity: 1;
+        background-color: var(--theme-color-3);
+
+        left: 50%;
+        top: -10px;
+        transform: translate(-50%, calc(-100%));
+        padding: 5px;
+    }
+    100%{
+        opacity: 0;
+        content: "";
+        background-color: transparent;
+
+        left: 50%;
+        top: -10px;
+        transform: translate(-50%, calc(-100%));
+        padding: 5px;
+    }
+}
+
+@keyframes clipboardDecorAnimation {
+    0%{
+        opacity: 0;
+
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-top: 11px solid var(--theme-color-3);
+        border-bottom: 10px solid transparent;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+    }
+    50%{
+        opacity: 1;
+
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-top: 11px solid var(--theme-color-3);
+        border-bottom: 10px solid transparent;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+    }
+    100%{
+        opacity: 0;
+        
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-top: 11px solid var(--theme-color-3);
+        border-bottom: 10px solid transparent;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+    }
+}
