@@ -123,7 +123,6 @@ body>main>*:last-child::after{
 
 body>main>*:last-child:active::after{
     opacity: 1;
-
     left: 50%;
     transform: translate(-50%, -50%);
     border-top: 11px solid var(--theme-color-3);
