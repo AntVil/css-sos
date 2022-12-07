@@ -4,6 +4,7 @@ let trackBorderWidthInput;
 let trackBorderRadiusInput;
 let trackColorInput;
 let trackBorderColorInput;
+let trackActiveColorInput;
 let thumbWidthInput;
 let thumbHeightInput;
 let thumbBorderWidthInput;
@@ -18,6 +19,7 @@ setup = () => {
     trackBorderRadiusInput = document.getElementById("trackBorderRadius");
     trackColorInput = document.getElementById("trackColor");
     trackBorderColorInput = document.getElementById("trackBorderColor");
+    trackActiveColorInput = document.getElementById("trackActiveColor");
     thumbWidthInput = document.getElementById("thumbWidth");
     thumbHeightInput = document.getElementById("thumbHeight");
     thumbBorderWidthInput = document.getElementById("thumbBorderWidth");
@@ -36,6 +38,7 @@ update = () => {
     let trackBorderRadius = parseFloat(trackBorderRadiusInput.value);
     let trackColor = trackColorInput.value;
     let trackBorderColor = trackBorderColorInput.value;
+    let trackActiveColor = trackActiveColorInput.value;
     let thumbWidth = parseFloat(thumbWidthInput.value);
     let thumbHeight = parseFloat(thumbHeightInput.value);
     let thumbBorderWidth = parseFloat(thumbBorderWidthInput.value);
@@ -57,6 +60,10 @@ update = () => {
             border: ${trackBorderWidth}px solid ${trackBorderColor};
             border-radius: ${trackBorderRadius}px;
             background-color: ${trackColor};
+        }
+
+        #output>input[type="checkbox"]:checked::before{
+            background-color: ${trackActiveColor};
         }
 
         #output>input[type="checkbox"]::after{
@@ -88,6 +95,7 @@ random = () => {
     trackBorderRadiusInput.value = randInt(trackBorderRadiusInput.min, trackBorderRadiusInput.max);
     trackColorInput.value = randColor();
     trackBorderColorInput.value = randColor();
+    trackActiveColorInput.value = randColor();
     thumbWidthInput.value = randInt(thumbWidthInput.min, thumbWidthInput.max);
     thumbHeightInput.value = randInt(thumbHeightInput.min, thumbHeightInput.max);
     thumbBorderWidthInput.value = randInt(thumbBorderWidthInput.min, thumbBorderWidthInput.max);
