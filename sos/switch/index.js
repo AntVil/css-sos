@@ -8,6 +8,7 @@ let trackActiveColorInput;
 let thumbWidthInput;
 let thumbHeightInput;
 let thumbBorderWidthInput;
+let thumbOffsetInput;
 let thumbBorderRadiusInput;
 let thumbColorInput;
 let thumbBorderColorInput;
@@ -23,6 +24,7 @@ setup = () => {
     thumbWidthInput = document.getElementById("thumbWidth");
     thumbHeightInput = document.getElementById("thumbHeight");
     thumbBorderWidthInput = document.getElementById("thumbBorderWidth");
+    thumbOffsetInput = document.getElementById("thumbOffset");
     thumbBorderRadiusInput = document.getElementById("thumbBorderRadius");
     thumbColorInput = document.getElementById("thumbColor");
     thumbBorderColorInput = document.getElementById("thumbBorderColor");
@@ -41,6 +43,7 @@ update = () => {
     let thumbWidth = parseFloat(thumbWidthInput.value);
     let thumbHeight = parseFloat(thumbHeightInput.value);
     let thumbBorderWidth = parseFloat(thumbBorderWidthInput.value);
+    let thumbOffset = parseFloat(thumbOffsetInput.value);
     let thumbBorderRadius = parseFloat(thumbBorderRadiusInput.value);
     let thumbColor = thumbColorInput.value;
     let thumbBorderColor = thumbBorderColorInput.value;
@@ -73,7 +76,7 @@ update = () => {
         #output>input[type="checkbox"]::after{
             position: absolute;
             top: 50%;
-            transform: translate(0, -50%);
+            transform: translate(${thumbOffset}px, -50%);
             content: "";
             display: block;
             width: ${thumbWidth}px;
@@ -84,7 +87,7 @@ update = () => {
         }
 
         #output>input[type="checkbox"]:checked::after{
-            transform: translate(${trackWidth + 2 * trackBorderWidth - thumbWidth - 2 * thumbBorderWidth}px, -50%);
+            transform: translate(${trackWidth + 2 * trackBorderWidth - thumbWidth - 2 * thumbBorderWidth - thumbOffset}px, -50%);
         }
 
         #output>input[type="checkbox"]:disabled{
@@ -104,6 +107,7 @@ random = () => {
     thumbWidthInput.value = randInt(thumbWidthInput.min, thumbWidthInput.max);
     thumbHeightInput.value = randInt(thumbHeightInput.min, thumbHeightInput.max);
     thumbBorderWidthInput.value = randInt(thumbBorderWidthInput.min, thumbBorderWidthInput.max);
+    thumbOffsetInput.value = randInt(thumbOffsetInput.min, thumbOffsetInput.max);
     thumbBorderRadiusInput.value = randInt(thumbBorderRadiusInput.min, thumbBorderRadiusInput.max);
     thumbColorInput.value = randColor();
     thumbBorderColorInput.value = randColor();
