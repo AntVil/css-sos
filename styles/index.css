@@ -95,11 +95,11 @@ main>button:hover{
     cursor: pointer;
 }
 
-body>main>button:last-child{
+main>button:last-child{
     position: relative;
 }
 
-body>main>button:last-child::before{
+main>button:last-child::before{
     content: "copied";
     opacity: 0;
     position: absolute;
@@ -110,7 +110,7 @@ body>main>button:last-child::before{
     border-radius: 5px;
 }
 
-body>main>button:last-child:active::before{
+main>button:last-child:active::before{
     opacity: 1;
     top: -10px;
     transform: translate(-50%, calc(-100%));
@@ -119,7 +119,7 @@ body>main>button:last-child:active::before{
     transition: 0s;
 }
 
-body>main>button:last-child::after{
+main>button:last-child::after{
     content: "";
     opacity: 0;
     position: absolute;
@@ -132,7 +132,7 @@ body>main>button:last-child::after{
     border: 10px solid transparent;
 }
 
-body>main>button:last-child:active::after{
+main>button:last-child:active::after{
     opacity: 1;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -140,17 +140,16 @@ body>main>button:last-child:active::after{
     transition: 0s;
 }
 
-input[type="range"]{
+#controls>input[type="range"]{
     appearance: none;
     position: relative;
-    width: 150px;
     height: 12px;
     background-color: transparent;
     background: transparent;
     overflow-x: hidden;
 }
 
-input[type="range"]::before{
+#controls>input[type="range"]::before{
     content: "";
     display: block;
     position: absolute;
@@ -168,7 +167,7 @@ input[type="range"]::before{
     clip-path: polygon(0 0, 6px 0, 6px 100%, 0 100%);
 }
 
-input[type="range"]::-webkit-slider-runnable-track{
+#controls>input[type="range"]::-webkit-slider-runnable-track{
     height: 5px;
     border-width: 0;
     border-style: solid;
@@ -179,7 +178,7 @@ input[type="range"]::-webkit-slider-runnable-track{
     z-index: 1;
 }
 
-input[type="range"]::-webkit-slider-thumb{
+#controls>input[type="range"]::-webkit-slider-thumb{
     appearance: none;
     width: 12px;
     height: 12px;
@@ -194,7 +193,7 @@ input[type="range"]::-webkit-slider-thumb{
     z-index: 1;
 }
 
-input[type="range"]::-moz-range-track{
+#controls>input[type="range"]::-moz-range-track{
     width: 100%;
     height: 5px;
     border-width: 0px;
@@ -204,7 +203,7 @@ input[type="range"]::-moz-range-track{
     border-color: transparent;
 }
 
-input[type="range"]::-moz-range-thumb{
+#controls>input[type="range"]::-moz-range-thumb{
     width: 12px;
     height: 12px;
     border-width: 0px;
@@ -214,13 +213,13 @@ input[type="range"]::-moz-range-thumb{
     border-color: transparent;
 }
 
-input[type="range"]::-moz-range-progress{
+#controls>input[type="range"]::-moz-range-progress{
     height: 5px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     background-color: var(--theme-color-0);
 }
 
-input[type="range"]:disabled{
+#controls>input[type="range"]:disabled{
     filter: grayscale(100%);
 }
