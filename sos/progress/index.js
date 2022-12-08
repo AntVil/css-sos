@@ -45,98 +45,164 @@ update = () => {
     let thumbColor = thumbColorInput.value;
     let thumbBorderColor = thumbBorderColorInput.value;
     let progressColor = progressColorInput.value;
-    
-    return `
-        #output>input[type="range"]{
-            appearance: none;
-            position: relative;
-            width: ${trackWidth + 2 * trackBorderWidth}px;
-            height: ${Math.max(trackHeight + 2 * trackBorderWidth, thumbHeight + 2 * thumbBorderWidth)}px;
-            background-color: transparent;
-            background: transparent;
-            overflow-x: hidden;
-        }
 
-        #output>input[type="range"]::before{
-            content: "";
-            display: block;
-            position: absolute;
-            top: 50%;
-            transform: translate(0, -50%);
-            width: 100%;
-            height: ${trackHeight + 2 * trackBorderWidth}px;
-            z-index: 0;
-            box-sizing: border-box;
-            border-width: ${trackBorderWidth}px;
-            border-style: solid;
-            border-radius: ${trackBorderRadius}px;
-            background-color: transparent;
-            border-color: ${trackBorderColor};
-            clip-path: polygon(0 0, ${Math.max(trackBorderWidth, trackBorderRadius) + 1}px 0, ${Math.max(trackBorderWidth, trackBorderRadius) + 1}px 100%, 0 100%);
-        }
-        
-        #output>input[type="range"]::-webkit-slider-runnable-track{
-            height: ${trackHeight + 2 * trackBorderWidth}px;
-            border-width: ${trackBorderWidth}px;
-            border-style: solid;
-            border-radius: ${trackBorderRadius}px;
-            background-color: ${trackColor};
-            border-color: ${trackBorderColor};
-            clip-path: polygon(
-                ${trackBorderWidth}px -100vh,
-                100vw -100vh,
-                100vw 100vh,
-                ${trackBorderWidth}px 100vh
-            );
-            z-index: 1;
-        }
-        
-        #output>input[type="range"]::-webkit-slider-thumb{
-            appearance: none;
-            width: ${thumbWidth + 2 * thumbBorderWidth}px;
-            height: ${thumbHeight + 2 * thumbBorderWidth}px;
-            margin-top: ${(trackHeight - (thumbHeight + 2 * thumbBorderWidth)) / 2}px;
-            border-width: ${thumbBorderWidth}px;
-            border-style: solid;
-            border-radius: ${thumbBorderRadius}px;
-            background-color: ${thumbColor};
-            border-color: ${thumbBorderColor};
-            box-shadow: calc(-100vw - ${thumbWidth + 2 * thumbBorderWidth}px) 0 0 100vw ${progressColor};
-            clip-path: polygon(1px 0, 100% 0, 100% 100%, 1px 100%, 1px calc(50% + ${trackHeight / 2}px), -100vw calc(50% + ${trackHeight / 2}px), -100vw calc(50% - ${trackHeight / 2}px), 0 calc(50% - ${trackHeight / 2}px));
-            z-index: 1;
-        }
-        
-        #output>input[type="range"]::-moz-range-track{
-            width: 100%;
-            height: ${trackHeight}px;
-            border-width: ${trackBorderWidth}px;
-            border-style: solid;
-            border-radius: ${trackBorderRadius}px;
-            background-color: ${trackColor};
-            border-color: ${trackBorderColor};
-        }
-        
-        #output>input[type="range"]::-moz-range-thumb{
-            width: ${thumbWidth}px;
-            height: ${thumbHeight}px;
-            border-width: ${thumbBorderWidth}px;
-            border-style: solid;
-            border-radius: ${thumbBorderRadius}px;
-            background-color: ${thumbColor};
-            border-color: ${thumbBorderColor};
-        }
+    if(thumbHeight + 2 * thumbBorderWidth <= trackHeight){
+        return `
+            #output>input[type="range"]{
+                appearance: none;
+                position: relative;
+                width: ${trackWidth + 2 * trackBorderWidth}px;
+                height: ${Math.max(trackHeight + 2 * trackBorderWidth, thumbHeight + 2 * thumbBorderWidth)}px;
+                background-color: transparent;
+                background: transparent;
+                overflow-x: hidden;
+            }
+            
+            #output>input[type="range"]::-webkit-slider-runnable-track{
+                height: ${trackHeight + 2 * trackBorderWidth}px;
+                border-width: ${trackBorderWidth}px;
+                border-style: solid;
+                border-radius: ${trackBorderRadius}px;
+                background-color: ${trackColor};
+                border-color: ${trackBorderColor};
+                z-index: 1;
+                overflow-x: hidden;
+            }
+            
+            #output>input[type="range"]::-webkit-slider-thumb{
+                appearance: none;
+                width: ${thumbWidth + 2 * thumbBorderWidth}px;
+                height: ${thumbHeight + 2 * thumbBorderWidth}px;
+                margin-top: ${(trackHeight - (thumbHeight + 2 * thumbBorderWidth)) / 2}px;
+                border-width: ${thumbBorderWidth}px;
+                border-style: solid;
+                border-radius: ${thumbBorderRadius}px;
+                background-color: ${thumbColor};
+                border-color: ${thumbBorderColor};
+                box-shadow: calc(-100vw - ${thumbWidth + 2 * thumbBorderWidth}px) 0 0 100vw ${progressColor};
+                clip-path: polygon(1px 0, 100% 0, 100% 100%, 1px 100%, 1px calc(50% + ${trackHeight / 2}px), -100vw calc(50% + ${trackHeight / 2}px), -100vw calc(50% - ${trackHeight / 2}px), 0 calc(50% - ${trackHeight / 2}px));
+                z-index: 1;
+            }
+            
+            #output>input[type="range"]::-moz-range-track{
+                width: 100%;
+                height: ${trackHeight}px;
+                border-width: ${trackBorderWidth}px;
+                border-style: solid;
+                border-radius: ${trackBorderRadius}px;
+                background-color: ${trackColor};
+                border-color: ${trackBorderColor};
+            }
+            
+            #output>input[type="range"]::-moz-range-thumb{
+                width: ${thumbWidth}px;
+                height: ${thumbHeight}px;
+                border-width: ${thumbBorderWidth}px;
+                border-style: solid;
+                border-radius: ${thumbBorderRadius}px;
+                background-color: ${thumbColor};
+                border-color: ${thumbBorderColor};
+            }
 
-        #output>input[type="range"]::-moz-range-progress{
-            height: ${trackHeight}px;
-            border-top-left-radius: ${trackBorderRadius}px;
-            border-bottom-left-radius: ${trackBorderRadius}px;
-            background-color: ${progressColor};
-        }
+            #output>input[type="range"]::-moz-range-progress{
+                height: ${trackHeight}px;
+                border-top-left-radius: ${trackBorderRadius}px;
+                border-bottom-left-radius: ${trackBorderRadius}px;
+                background-color: ${progressColor};
+            }
 
-        #output>input[type="range"]:disabled{
-            filter: grayscale(100%);
-        }
-    `;
+            #output>input[type="range"]:disabled{
+                filter: grayscale(100%);
+            }
+        `;
+    }else{
+        return `
+            #output>input[type="range"]{
+                appearance: none;
+                position: relative;
+                width: ${trackWidth + 2 * trackBorderWidth}px;
+                height: ${Math.max(trackHeight + 2 * trackBorderWidth, thumbHeight + 2 * thumbBorderWidth)}px;
+                background-color: transparent;
+                background: transparent;
+                overflow-x: hidden;
+            }
+
+            #output>input[type="range"]::before{
+                content: "";
+                display: block;
+                position: absolute;
+                top: 50%;
+                transform: translate(0, -50%);
+                width: 100%;
+                height: ${trackHeight + 2 * trackBorderWidth}px;
+                z-index: 0;
+                box-sizing: border-box;
+                border-width: ${trackBorderWidth}px;
+                border-style: solid;
+                border-radius: ${trackBorderRadius}px;
+                background-color: transparent;
+                border-color: ${trackBorderColor};
+                clip-path: polygon(0 0, ${Math.max(trackBorderWidth, trackBorderRadius) + 1}px 0, ${Math.max(trackBorderWidth, trackBorderRadius) + 1}px 100%, 0 100%);
+            }
+            
+            #output>input[type="range"]::-webkit-slider-runnable-track{
+                height: ${trackHeight + 2 * trackBorderWidth}px;
+                border-width: ${trackBorderWidth}px;
+                border-style: solid;
+                border-radius: ${trackBorderRadius}px;
+                background-color: ${trackColor};
+                border-color: ${trackBorderColor};
+                clip-path: polygon(${trackBorderWidth}px -100vh, 100vw -100vh, 100vw 100vh, ${trackBorderWidth}px 100vh);
+                z-index: 1;
+            }
+            
+            #output>input[type="range"]::-webkit-slider-thumb{
+                appearance: none;
+                width: ${thumbWidth + 2 * thumbBorderWidth}px;
+                height: ${thumbHeight + 2 * thumbBorderWidth}px;
+                margin-top: ${(trackHeight - (thumbHeight + 2 * thumbBorderWidth)) / 2}px;
+                border-width: ${thumbBorderWidth}px;
+                border-style: solid;
+                border-radius: ${thumbBorderRadius}px;
+                background-color: ${thumbColor};
+                border-color: ${thumbBorderColor};
+                box-shadow: calc(-100vw - ${thumbWidth + 2 * thumbBorderWidth}px) 0 0 100vw ${progressColor};
+                clip-path: polygon(1px 0, 100% 0, 100% 100%, 1px 100%, 1px calc(50% + ${trackHeight / 2}px), -100vw calc(50% + ${trackHeight / 2}px), -100vw calc(50% - ${trackHeight / 2}px), 0 calc(50% - ${trackHeight / 2}px));
+                z-index: 1;
+            }
+            
+            #output>input[type="range"]::-moz-range-track{
+                width: 100%;
+                height: ${trackHeight}px;
+                border-width: ${trackBorderWidth}px;
+                border-style: solid;
+                border-radius: ${trackBorderRadius}px;
+                background-color: ${trackColor};
+                border-color: ${trackBorderColor};
+            }
+            
+            #output>input[type="range"]::-moz-range-thumb{
+                width: ${thumbWidth}px;
+                height: ${thumbHeight}px;
+                border-width: ${thumbBorderWidth}px;
+                border-style: solid;
+                border-radius: ${thumbBorderRadius}px;
+                background-color: ${thumbColor};
+                border-color: ${thumbBorderColor};
+            }
+
+            #output>input[type="range"]::-moz-range-progress{
+                height: ${trackHeight}px;
+                border-top-left-radius: ${trackBorderRadius}px;
+                border-bottom-left-radius: ${trackBorderRadius}px;
+                background-color: ${progressColor};
+            }
+
+            #output>input[type="range"]:disabled{
+                filter: grayscale(100%);
+            }
+        `;
+    }
 }
 
 random = () => {
