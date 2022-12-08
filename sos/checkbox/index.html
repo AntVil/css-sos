@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="EN">
     <head>
-        <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=0'>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+        <title>css-sos-checkbox</title>
+        <meta name=description content="cross-browser pure CSS Generator for checkbox element">
 
         <link rel="stylesheet" type="text/css" href="../../styles/themes.css">
         <link rel="stylesheet" type="text/css" href="../../styles/index.css">
@@ -30,34 +33,38 @@
         </nav>
         <main>
             <section id="controls">
-                <label>checkbox size</label>
+                <label for="checkboxSize">checkbox size</label>
                 <input id="checkboxSize" type="range" min="10" max="20" />
-                <label>checkbox border width</label>
+                <label for="checkboxBorderWidth">checkbox border width</label>
                 <input id="checkboxBorderWidth" type="range" min="0" max="5" />
-                <label>checkbox border radius</label>
+                <label for="checkboxBorderRadius">checkbox border radius</label>
                 <input id="checkboxBorderRadius" type="range" min="0" max="20" />
-                <label>checkbox color</label>
+                <label for="checkboxColor">checkbox color</label>
                 <input id="checkboxColor" type="color" />
-                <label>checkbox border color</label>
+                <label for="checkboxBorderColor">checkbox border color</label>
                 <input id="checkboxBorderColor" type="color" />
-                <label>check icon</label>
+                <label for="checkIcon">check icon</label>
                 <div>
                     <input id="checkIconCheck" type="radio" name="checkIcon" checked />
                     <input id="checkIconCross" type="radio" name="checkIcon" />
                 </div>
-                <label>check size</label>
+                <label for="checkSize">check size</label>
                 <input id="checkSize" type="range" min="10" max="20" />
-                <label>check width</label>
+                <label for="checkWidth">check width</label>
                 <input id="checkWidth" type="range" min="1" max="10" />
-                <label>check color</label>
+                <label for="checkColor">check color</label>
                 <input id="checkColor" type="color" />
                 <p>see also: <a href="../switch/index.html">switch</a></p>
             </section>
             <section id="output">
-                <input type="checkbox" />
-                <input type="checkbox" checked />
-                <input type="checkbox" disabled />
-                <input type="checkbox" checked disabled/>
+                <label for="output0">checkbox</label>
+                <input id="output0" type="checkbox" />
+                <label for="output1">checked checkbox</label>
+                <input id="output1" type="checkbox" checked />
+                <label for="output2">disabled checkbox</label>
+                <input id="output2" type="checkbox" disabled />
+                <label for="output3">disabled checked checkbox</label>
+                <input id="output3" type="checkbox" checked disabled/>
             </section>
             <button onclick="random()">random</button>
             <button onclick="clipboard()">clipboard</button>

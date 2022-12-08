@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="EN">
     <head>
-        <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=0'>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+        <title>css-sos-range</title>
+        <meta name=description content="cross-browser pure CSS Generator for range element">
 
         <link rel="stylesheet" type="text/css" href="../../styles/themes.css">
         <link rel="stylesheet" type="text/css" href="../../styles/index.css">
@@ -30,35 +33,37 @@
         </nav>
         <main>
             <section id="controls">
-                <label>track width</label>
+                <label for="trackWidth">track width</label>
                 <input id="trackWidth" type="range" min="100" max="150">
-                <label>track height</label>
+                <label for="trackHeight">track height</label>
                 <input id="trackHeight" type="range" min="5" max="30">
-                <label>track border width</label>
+                <label for="trackBorderWidth">track border width</label>
                 <input id="trackBorderWidth" type="range" min="0" max="10">
-                <label>track border radius</label>
+                <label for="trackBorderRadius">track border radius</label>
                 <input id="trackBorderRadius" type="range" min="0" max="30">
-                <label>track color</label>
+                <label for="trackColor">track color</label>
                 <input id="trackColor" type="color">
-                <label>track border color</label>
+                <label for="trackBorderColor">track border color</label>
                 <input id="trackBorderColor" type="color">
-                <label>thumb width</label>
+                <label for="thumbWidth">thumb width</label>
                 <input id="thumbWidth" type="range" min="5" max="30">
-                <label>thumb height</label>
+                <label for="thumbHeight">thumb height</label>
                 <input id="thumbHeight" type="range" min="5" max="30">
-                <label>thumb border width</label>
+                <label for="thumbBorderWidth">thumb border width</label>
                 <input id="thumbBorderWidth" type="range" min="0" max="10">
-                <label>thumb border radius</label>
+                <label for="thumbBorderRadius">thumb border radius</label>
                 <input id="thumbBorderRadius" type="range" min="0" max="30">
-                <label>thumb color</label>
+                <label for="thumbColor">thumb color</label>
                 <input id="thumbColor" type="color">
-                <label>thumb border color</label>
+                <label for="thumbBorderColor">thumb border color</label>
                 <input id="thumbBorderColor" type="color">
                 <p>see also: <a href="../progress/index.html">progress</a></p>
             </section>
             <section id="output">
-                <input type="range" />
-                <input type="range" disabled />
+                <label for="output0">range</label>
+                <input id="output0" type="range" />
+                <label for="output1">disabled range</label>
+                <input id="output1" type="range" disabled />
             </section>
             <button onclick="random()">random</button>
             <button onclick="clipboard()">clipboard</button>

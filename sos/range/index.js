@@ -28,7 +28,6 @@ setup = () => {
     random();
 }
 
-
 update = () => {
     let trackWidth = parseFloat(trackWidthInput.value);
     let trackHeight = parseFloat(trackHeightInput.value);
@@ -47,6 +46,7 @@ update = () => {
         #output>input[type="range"]{
             appearance: none;
             width: ${trackWidth + 2 * trackBorderWidth}px;
+            height: ${Math.max(trackHeight + 2 * trackBorderWidth, thumbHeight + 2 * thumbBorderWidth)}px;
             background-color: transparent;
             background: transparent;
         }

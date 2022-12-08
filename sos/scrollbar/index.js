@@ -12,7 +12,6 @@ setup = () => {
     random();
 }
 
-
 update = () => {
     let trackStyleThin = trackStyleThinInput.checked;
     let trackStyleThick = trackStyleThickInput.checked;

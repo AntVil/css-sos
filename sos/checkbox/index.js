@@ -24,7 +24,6 @@ setup = () => {
     random();
 }
 
-
 update = () => {
     let checkboxSize = parseFloat(checkboxSizeInput.value);
     let checkboxBorderWidth = parseFloat(checkboxBorderWidthInput.value);
@@ -47,6 +46,8 @@ update = () => {
     return `
         #output>input[type="checkbox"]{
             appearance: none;
+            width: ${checkboxSize + checkboxBorderWidth}px;
+            height: ${checkboxSize + checkboxBorderWidth}px;
         }
 
         #output>input[type="checkbox"]::before{

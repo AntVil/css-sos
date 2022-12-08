@@ -28,7 +28,6 @@ setup = () => {
     random();
 }
 
-
 update = () => {
     let trackWidth = parseFloat(trackWidthInput.value);
     let trackHeight = parseFloat(trackHeightInput.value);
