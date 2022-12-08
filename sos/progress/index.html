@@ -30,28 +30,39 @@
         </nav>
         <main>
             <section id="controls">
-                <label>track style</label>
-                <div>
-                    <input id="trackStyleThin" type="radio" name="trackStyle">
-                    <input id="trackStyleThick" type="radio" name="trackStyle">
-                </div>
+                <label>track width</label>
+                <input id="trackWidth" type="range" min="100" max="150">
+                <label>track height</label>
+                <input id="trackHeight" type="range" min="5" max="30">
+                <label>track border width</label>
+                <input id="trackBorderWidth" type="range" min="0" max="10">
+                <label>track border radius</label>
+                <input id="trackBorderRadius" type="range" min="0" max="30">
                 <label>track color</label>
                 <input id="trackColor" type="color">
+                <label>track border color</label>
+                <input id="trackBorderColor" type="color">
+                <label>thumb width</label>
+                <input id="thumbWidth" type="range" min="5" max="30">
+                <label>thumb height</label>
+                <input id="thumbHeight" type="range" min="5" max="30">
+                <label>thumb border width</label>
+                <input id="thumbBorderWidth" type="range" min="0" max="10">
+                <label>thumb border radius</label>
+                <input id="thumbBorderRadius" type="range" min="0" max="30">
                 <label>thumb color</label>
                 <input id="thumbColor" type="color">
+                <label>thumb border color</label>
+                <input id="thumbBorderColor" type="color">
+                <label>progress color</label>
+                <input id="progressColor" type="color">
+
+                <p><i>caution: in webkit browsers (chrome, edge, opera, safari) border-radius for progressbar not possible without cutting thumb, choose big enough track border or no track border-radius</i></p>
+                <p>see also: <a href="../range/index.html">range</a></p>
             </section>
             <section id="output">
-                <div class="scroll" style="width: 180px;height: 100px;">
-                    Content Content Content<br>
-                    Content Content Content<br>
-                    Content Content Content<br>
-                    Content Content Content<br>
-                    Content Content Content<br>
-                    Content Content Content<br>
-                    Content Content Content<br>
-                    Content Content Content<br>
-                    Content Content Content
-                </div>
+                <input type="range" />
+                <input type="range" disabled />
             </section>
             <button onclick="random()">random</button>
             <button onclick="clipboard()">clipboard</button>

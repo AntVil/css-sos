@@ -1,38 +1,6 @@
-main>button{
-    margin: 5px;
-    border: 0;
-    border-radius: 5px;
-    background-color: var(--theme-color-0);
-}
-
-main>button:hover{
-    background-color: var(--theme-color-3);
-    cursor: pointer;
-}
-
-#controls{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    margin: auto 0;
-    padding: 5px;
-}
-
-#controls>*{
-    width: 100%;
-}
-
 #controls>div{
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
-}
-
-#output{
-    display: grid;
-    justify-content: center;
     align-items: center;
 }
 
@@ -82,49 +50,4 @@ main>button:hover{
     width: 40px;
     height: 40px;
     background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='iso-8859-1'%3F%3E%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 100 100' xml:space='preserve'%3E%3Crect x='20' y='20' width='60' height='60' fill='%23FFF' /%3E%3Cpath d='M 50 25 L 75 45 L 25 45'/%3E%3Cpath d='M 50 75 L 75 55 L 25 55'/%3E%3C/svg%3E");
-}
-
-body>main>*:last-child{
-    position: relative;
-}
-
-body>main>*:last-child::before{
-    content: "copied";
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transition: 0s 1s;
-    text-align: center;
-    border-radius: 5px;
-}
-
-body>main>*:last-child:active::before{
-    opacity: 1;
-    top: -10px;
-    transform: translate(-50%, calc(-100%));
-    background-color: var(--theme-color-3);
-    padding: 5px;
-    transition: 0s;
-}
-
-body>main>*:last-child::after{
-    content: "";
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 0;
-    height: 0;
-    transition: 0s 1s;
-    text-align: center;
-    border: 10px solid transparent;
-}
-
-body>main>*:last-child:active::after{
-    opacity: 1;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-top: 11px solid var(--theme-color-3);
-    transition: 0s;
 }
