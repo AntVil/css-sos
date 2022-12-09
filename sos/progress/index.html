@@ -46,6 +46,8 @@
                 <input id="trackColor" type="color">
                 <label for="trackBorderColor">track border color</label>
                 <input id="trackBorderColor" type="color">
+                <label for="thumbVisible">thumb visable</label>
+                <input id="thumbVisible" type="checkbox" checked>
                 <label for="thumbWidth">thumb width</label>
                 <input id="thumbWidth" type="range" min="5" max="30">
                 <label for="thumbHeight">thumb height</label>
@@ -65,7 +67,8 @@
                 <label for="progressHoverColor">progress hover color</label>
                 <input id="progressHoverColor" type="color" />
 
-                <p><i>caution: in webkit browsers (chrome, edge, opera, safari) border-radius for progressbar not possible without cutting thumb, choose big enough track border or no track border-radius</i></p>
+                <p id="thumbCaution"><i>caution: in webkit browsers (chrome, edge, opera, safari) border-radius for progressbar not possible without cutting thumb, choose big enough track border or no track border-radius</i></p>
+                <p><i>caution: in firefox border-radius of track does not cut off progressbar on the right</i></p>
                 <p>see also: <a href="../range/index.html">range</a></p>
             </section>
             <section id="output">

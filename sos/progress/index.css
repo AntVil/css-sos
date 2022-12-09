@@ -1,0 +1,4 @@
+#thumbVisible:not(:checked)~*[for^="thumb"],
+#thumbVisible:not(:checked)~*[id^=thumb]{
+    display: none;
+}

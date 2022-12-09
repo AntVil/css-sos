@@ -11,3 +11,7 @@ function randColor(){
     }
     return val;
 }
+
+function randBool(){
+    return Math.random() < 0.5;
+}

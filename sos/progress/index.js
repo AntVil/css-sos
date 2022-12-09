@@ -4,6 +4,7 @@ let trackBorderWidthInput;
 let trackBorderRadiusInput;
 let trackColorInput;
 let trackBorderColorInput;
+let thumbVisibleInput;
 let thumbWidthInput;
 let thumbHeightInput;
 let thumbBorderWidthInput;
@@ -21,6 +22,7 @@ setup = () => {
     trackBorderRadiusInput = document.getElementById("trackBorderRadius");
     trackColorInput = document.getElementById("trackColor");
     trackBorderColorInput = document.getElementById("trackBorderColor");
+    thumbVisibleInput = document.getElementById("thumbVisible");
     thumbWidthInput = document.getElementById("thumbWidth");
     thumbHeightInput = document.getElementById("thumbHeight");
     thumbBorderWidthInput = document.getElementById("thumbBorderWidth");
@@ -41,6 +43,7 @@ update = () => {
     let trackBorderRadius = parseFloat(trackBorderRadiusInput.value);
     let trackColor = trackColorInput.value;
     let trackBorderColor = trackBorderColorInput.value;
+    let thumbVisible = thumbVisibleInput.checked;
     let thumbWidth = parseFloat(thumbWidthInput.value);
     let thumbHeight = parseFloat(thumbHeightInput.value);
     let thumbBorderWidth = parseFloat(thumbBorderWidthInput.value);
@@ -51,7 +54,95 @@ update = () => {
     let progressColor = progressColorInput.value;
     let progressHoverColor = progressHoverColorInput.value;
 
-    if(thumbHeight + 2 * thumbBorderWidth <= trackHeight){
+    if(!thumbVisible){
+        return `
+            #output>input[type="range"]{
+                appearance: none;
+                position: relative;
+                width: ${trackWidth + 2 * trackBorderWidth}px;
+                height: ${Math.max(trackHeight + 2 * trackBorderWidth, thumbHeight + 2 * thumbBorderWidth)}px;
+                background-color: transparent;
+                background: transparent;
+                overflow-x: hidden;
+            }
+            
+            #output>input[type="range"]::-webkit-slider-runnable-track{
+                height: ${trackHeight + 2 * trackBorderWidth}px;
+                border-width: ${trackBorderWidth}px;
+                border-style: solid;
+                border-radius: ${trackBorderRadius}px;
+                background-color: ${trackColor};
+                border-color: ${trackBorderColor};
+                z-index: 1;
+                overflow-x: hidden;
+            }
+            
+            #output>input[type="range"]::-webkit-slider-thumb{
+                appearance: none;
+                width: 0;
+                height: ${trackHeight}px;
+                margin-top: 0;
+                border-width: 0;
+                border-style: solid;
+                border-radius: ${thumbBorderRadius}px;
+                background-color: ${thumbColor};
+                border-color: ${thumbBorderColor};
+                box-shadow: -100vw 0 0 100vw ${progressColor};
+                clip-path: polygon(1px 0, 100% 0, 100% 100%, 1px 100%, 1px calc(50% + ${trackHeight / 2}px), -100vw calc(50% + ${trackHeight / 2}px), -100vw calc(50% - ${trackHeight / 2}px), 0 calc(50% - ${trackHeight / 2}px));
+                z-index: 1;
+            }
+            
+            #output>input[type="range"]::-moz-range-track{
+                width: 100%;
+                height: ${trackHeight}px;
+                border-width: ${trackBorderWidth}px;
+                border-style: solid;
+                border-radius: ${trackBorderRadius}px;
+                background-color: ${trackColor};
+                border-color: ${trackBorderColor};
+            }
+            
+            #output>input[type="range"]::-moz-range-thumb{
+                width: 0;
+                height: ${thumbHeight}px;
+                border-width: 0;
+                border-style: solid;
+                border-radius: ${thumbBorderRadius}px;
+                background-color: ${thumbColor};
+                border-color: ${thumbBorderColor};
+            }
+
+            #output>input[type="range"]::-moz-range-progress{
+                height: ${trackHeight}px;
+                border-top-left-radius: ${trackBorderRadius}px;
+                border-bottom-left-radius: ${trackBorderRadius}px;
+                background-color: ${progressColor};
+            }
+
+            #output>input[type="range"]:disabled{
+                filter: grayscale(100%);
+            }
+        
+            @media (hover: hover) {
+                #output>input[type="range"]:not([disabled]){
+                    cursor: pointer;
+                }
+                
+                #output>input[type="range"]:not([disabled]):hover::-webkit-slider-thumb{
+                    background-color: ${thumbHoverColor};
+                    box-shadow: -100vw 0 0 100vw ${progressHoverColor};
+                }
+                
+                #output>input[type="range"]:not([disabled]):hover::-moz-range-thumb{
+                    background-color: ${thumbHoverColor};
+                }
+
+                #output>input[type="range"]:not([disabled]):hover::-moz-range-progress{
+                    background-color: ${progressHoverColor};
+                }
+            }
+        `;
+    }else if(thumbHeight + 2 * thumbBorderWidth <= trackHeight){
         return `
             #output>input[type="range"]{
                 appearance: none;
@@ -127,14 +218,11 @@ update = () => {
                 
                 #output>input[type="range"]:not([disabled]):hover::-webkit-slider-thumb{
                     background-color: ${thumbHoverColor};
+                    box-shadow: calc(-100vw - ${thumbWidth + 2 * thumbBorderWidth}px) 0 0 100vw ${progressHoverColor};
                 }
                 
                 #output>input[type="range"]:not([disabled]):hover::-moz-range-thumb{
                     background-color: ${thumbHoverColor};
-                }
-
-                #output>input[type="range"]:not([disabled]):hover::-webkit-slider-thumb{
-                    box-shadow: calc(-100vw - ${thumbWidth + 2 * thumbBorderWidth}px) 0 0 100vw ${progressHoverColor};
                 }
 
                 #output>input[type="range"]:not([disabled]):hover::-moz-range-progress{
@@ -236,14 +324,11 @@ update = () => {
                 
                 #output>input[type="range"]:not([disabled]):hover::-webkit-slider-thumb{
                     background-color: ${thumbHoverColor};
+                    box-shadow: calc(-100vw - ${thumbWidth + 2 * thumbBorderWidth}px) 0 0 100vw ${progressHoverColor};
                 }
                 
                 #output>input[type="range"]:not([disabled]):hover::-moz-range-thumb{
                     background-color: ${thumbHoverColor};
-                }
-
-                #output>input[type="range"]:not([disabled]):hover::-webkit-slider-thumb{
-                    box-shadow: calc(-100vw - ${thumbWidth + 2 * thumbBorderWidth}px) 0 0 100vw ${progressHoverColor};
                 }
 
                 #output>input[type="range"]:not([disabled]):hover::-moz-range-progress{
@@ -261,6 +346,7 @@ random = () => {
     trackBorderRadiusInput.value = randInt(trackBorderRadiusInput.min, trackBorderRadiusInput.max);
     trackColorInput.value = randColor();
     trackBorderColorInput.value = randColor();
+    thumbVisibleInput.checked = randBool();
     thumbWidthInput.value = randInt(thumbWidthInput.min, thumbWidthInput.max);
     thumbHeightInput.value = randInt(thumbHeightInput.min, thumbHeightInput.max);
     thumbBorderWidthInput.value = randInt(thumbBorderWidthInput.min, thumbBorderWidthInput.max);

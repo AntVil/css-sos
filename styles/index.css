@@ -225,3 +225,78 @@ main>button:last-child:active::after{
 #controls>input[type="range"]:disabled{
     filter: grayscale(100%);
 }
+
+@media (hover: hover) {
+    #controls>input[type="range"]:not([disabled]){
+        cursor: pointer;
+    }
+    
+    #controls>input[type="range"]:not([disabled]):hover::-webkit-slider-thumb{
+        filter: brightness(120%);
+    }
+    
+    #controls>input[type="range"]:not([disabled]):hover::-moz-range-thumb{
+        filter: brightness(120%);
+    }
+
+    #controls>input[type="range"]:not([disabled]):hover::-moz-range-progress{
+        filter: brightness(120%);
+    }
+}
+
+#controls>input[type="checkbox"]{
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    appearance: none;
+    position: relative;
+    width: 47px;
+    height: 23px;
+}
+
+#controls>input[type="checkbox"]::before{
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    content: "";
+    display: block;
+    width: 47px;
+    height: 23px;
+    border-radius: 5px;
+    background-color: var(--theme-color-1);
+}
+
+#controls>input[type="checkbox"]:checked::before{
+    background-color: var(--theme-color-3);
+}
+
+#controls>input[type="checkbox"]::after{
+    position: absolute;
+    top: 50%;
+    transform: translate(0px, -50%);
+    content: "";
+    display: block;
+    width: 23px;
+    height: 23px;
+    border-radius: 5px;
+    background-color: var(--theme-color-0);
+}
+
+#controls>input[type="checkbox"]:checked::after{
+    transform: translate(24px, -50%);
+}
+
+#controls>input[type="checkbox"]:disabled{
+    filter: grayscale(100%);
+}
+
+@media (hover: hover) {
+    #controls>input[type="checkbox"]:not([disabled]):hover::before{
+        cursor: pointer;
+    }
+    
+    #controls>input[type="checkbox"]:not([disabled]):hover::after{
+        filter: brightness(120%);
+        cursor: pointer;
+    }
+}
