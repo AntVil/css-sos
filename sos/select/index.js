@@ -1,99 +1,84 @@
-let trackWidthInput;
-let trackHeightInput;
-let trackBorderWidthInput;
-let trackBorderRadiusInput;
-let trackColorInput;
-let trackBorderColorInput;
-let thumbWidthInput;
-let thumbHeightInput;
-let thumbBorderWidthInput;
-let thumbBorderRadiusInput;
-let thumbColorInput;
-let thumbBorderColorInput;
+let selectWidthInput;
+let selectHeightInput;
+let selectBorderWidthInput;
+let selectBorderRadiusInput;
+let selectColorInput;
+let selectBorderColorInput;
+let selectFontColorInput;
+let arrowSizeInput;
+let arrowColorInput;
+let arrowBackgroundWidthInput;
+let arrowBackgroundColorInput;
 
 setup = () => {
-    trackWidthInput = document.getElementById("trackWidth");
-    trackHeightInput = document.getElementById("trackHeight");
-    trackBorderWidthInput = document.getElementById("trackBorderWidth");
-    trackBorderRadiusInput = document.getElementById("trackBorderRadius");
-    trackColorInput = document.getElementById("trackColor");
-    trackBorderColorInput = document.getElementById("trackBorderColor");
-    thumbWidthInput = document.getElementById("thumbWidth");
-    thumbHeightInput = document.getElementById("thumbHeight");
-    thumbBorderWidthInput = document.getElementById("thumbBorderWidth");
-    thumbBorderRadiusInput = document.getElementById("thumbBorderRadius");
-    thumbColorInput = document.getElementById("thumbColor");
-    thumbBorderColorInput = document.getElementById("thumbBorderColor");
+    selectWidthInput = document.getElementById("selectWidth");
+    selectHeightInput = document.getElementById("selectHeight");
+    selectBorderWidthInput = document.getElementById("selectBorderWidth");
+    selectBorderRadiusInput = document.getElementById("selectBorderRadius");
+    selectColorInput = document.getElementById("selectColor");
+    selectBorderColorInput = document.getElementById("selectBorderColor");
+    selectFontColorInput = document.getElementById("selectFontColor");
+    arrowSizeInput = document.getElementById("arrowSize");
+    arrowColorInput = document.getElementById("arrowColor");
+    arrowBackgroundWidthInput = document.getElementById("arrowBackgroundWidth");
+    arrowBackgroundColorInput = document.getElementById("arrowBackgroundColor");
 
     random();
 }
 
 
 update = () => {
-    let trackWidth = parseFloat(trackWidthInput.value);
-    let trackHeight = parseFloat(trackHeightInput.value);
-    let trackBorderWidth = parseFloat(trackBorderWidthInput.value);
-    let trackBorderRadius = parseFloat(trackBorderRadiusInput.value);
-    let trackColor = trackColorInput.value;
-    let trackBorderColor = trackBorderColorInput.value;
-    let thumbWidth = parseFloat(thumbWidthInput.value);
-    let thumbHeight = parseFloat(thumbHeightInput.value);
-    let thumbBorderWidth = parseFloat(thumbBorderWidthInput.value);
-    let thumbBorderRadius = parseFloat(thumbBorderRadiusInput.value);
-    let thumbColor = thumbColorInput.value;
-    let thumbBorderColor = thumbBorderColorInput.value;
+    let selectWidth = parseFloat(selectWidthInput.value);
+    let selectHeight = parseFloat(selectHeightInput.value);
+    let selectBorderWidth = parseFloat(selectBorderWidthInput.value);
+    let selectBorderRadius = parseFloat(selectBorderRadiusInput.value);
+    let selectColor = selectColorInput.value;
+    let selectBorderColor = selectBorderColorInput.value;
+    let selectFontColor = selectFontColorInput.value;
+    let arrowSize = parseFloat(arrowSizeInput.value);
+    let arrowColor = arrowColorInput.value;
+    let arrowBackgroundWidth = parseFloat(arrowBackgroundWidthInput.value);
+    let arrowBackgroundColor = arrowBackgroundColorInput.value;
     
+    let arrowUrl = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23${arrowColor.slice(1)}' d='M3 3L21 3L12 21'/%3E%3C/svg%3E")`;
     return `
-        #output>input[type="checkbox"]{
+        #output>select{
             appearance: none;
+            box-sizing: border-box;
+            position: relative;
+            width: ${selectWidth + 2 * selectBorderWidth}px;
+            height: ${selectHeight + 2 * selectBorderWidth}px;
+            border: ${selectBorderWidth}px solid ${selectBorderColor};
+            color: ${selectFontColor};
+            border-radius: ${selectBorderRadius}px;
+            padding-left: 5px;
+            background: ${arrowUrl} no-repeat right calc(${arrowBackgroundWidth / 2}px - ${arrowSize / 2}px) center/${arrowSize}px,
+            linear-gradient(to left, ${arrowBackgroundColor} ${arrowBackgroundWidth}px, ${selectColor} ${arrowBackgroundWidth}px);
         }
 
-        #output>input[type="checkbox"]::before{
-            position: absolute;
-            content: "";
-            display: block;
-            width: ${trackWidth}px;
-            height: ${trackHeight}px;
-            border: ${trackBorderWidth}px solid ${trackBorderColor};
-            border-radius: ${trackBorderRadius}px;
-            background-color: ${trackColor};
+        #output>select>option{
+            color: inherit;
+            background-color: ${selectColor};
         }
 
-        #output>input[type="checkbox"]::after{
-            position: absolute;
-            content: "";
-            display: block;
-            width: ${thumbWidth}px;
-            height: ${thumbHeight}px;
-            transform: translate(0, ${(trackHeight + 2 * trackBorderWidth - thumbHeight - 2 * thumbBorderWidth) / 2}px);
-            border: ${thumbBorderWidth}px solid ${thumbBorderColor};
-            border-radius: ${thumbBorderRadius}px;
-            background-color: ${thumbColor};
-        }
-
-        #output>input[type="checkbox"]:checked::after{
-            transform: translate(${trackWidth + 2 * trackBorderWidth - thumbWidth - 2 * thumbBorderWidth}px, ${(trackHeight + 2 * trackBorderWidth - thumbHeight - 2 * thumbBorderWidth) / 2}px);
-        }
-
-        #output>input[type="checkbox"]:disabled{
+        #output>select:disabled{
             filter: grayscale(100%);
         }
     `;
 }
 
 random = () => {
-    trackWidthInput.value = randInt(trackWidthInput.min, trackWidthInput.max);
-    trackHeightInput.value = randInt(trackHeightInput.min, trackHeightInput.max);
-    trackBorderWidthInput.value = randInt(trackBorderWidthInput.min, trackBorderWidthInput.max);
-    trackBorderRadiusInput.value = randInt(trackBorderRadiusInput.min, trackBorderRadiusInput.max);
-    trackColorInput.value = randColor();
-    trackBorderColorInput.value = randColor();
-    thumbWidthInput.value = randInt(thumbWidthInput.min, thumbWidthInput.max);
-    thumbHeightInput.value = randInt(thumbHeightInput.min, thumbHeightInput.max);
-    thumbBorderWidthInput.value = randInt(thumbBorderWidthInput.min, thumbBorderWidthInput.max);
-    thumbBorderRadiusInput.value = randInt(thumbBorderRadiusInput.min, thumbBorderRadiusInput.max);
-    thumbColorInput.value = randColor();
-    thumbBorderColorInput.value = randColor();
+    selectWidthInput.value = randInt(selectWidthInput.min, selectWidthInput.max);
+    selectHeightInput.value = randInt(selectHeightInput.min, selectHeightInput.max);
+    selectBorderWidthInput.value = randInt(selectBorderWidthInput.min, selectBorderWidthInput.max);
+    selectBorderRadiusInput.value = randInt(selectBorderRadiusInput.min, selectBorderRadiusInput.max);
+    selectColorInput.value = randColor();
+    selectBorderColorInput.value = randColor();
+    selectFontColorInput.value = randColor();
+    arrowSizeInput.value = randInt(arrowSizeInput.min, arrowSizeInput.max);
+    arrowColorInput.value = randColor();
+    arrowBackgroundWidthInput.value = randInt(arrowBackgroundWidthInput.min, arrowBackgroundWidthInput.max);
+    arrowBackgroundColorInput.value = randColor();
 }
 
 clipboard = () => {
