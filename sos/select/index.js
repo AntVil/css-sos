@@ -5,7 +5,10 @@ let selectBorderRadiusInput;
 let selectColorInput;
 let selectBorderColorInput;
 let selectFontColorInput;
-let arrowSizeInput;
+let arrowIconCornerInput;
+let arrowIconTriangleInput;
+let arrowXSizeInput;
+let arrowYSizeInput;
 let arrowColorInput;
 let arrowBackgroundWidthInput;
 let arrowBackgroundColorInput;
@@ -18,7 +21,10 @@ setup = () => {
     selectColorInput = document.getElementById("selectColor");
     selectBorderColorInput = document.getElementById("selectBorderColor");
     selectFontColorInput = document.getElementById("selectFontColor");
-    arrowSizeInput = document.getElementById("arrowSize");
+    arrowIconCornerInput = document.getElementById("arrowIconCorner");
+    arrowIconTriangleInput = document.getElementById("arrowIconTriangle");
+    arrowXSizeInput = document.getElementById("arrowXSize");
+    arrowYSizeInput = document.getElementById("arrowYSize");
     arrowColorInput = document.getElementById("arrowColor");
     arrowBackgroundWidthInput = document.getElementById("arrowBackgroundWidth");
     arrowBackgroundColorInput = document.getElementById("arrowBackgroundColor");
@@ -35,12 +41,25 @@ update = () => {
     let selectColor = selectColorInput.value;
     let selectBorderColor = selectBorderColorInput.value;
     let selectFontColor = selectFontColorInput.value;
-    let arrowSize = parseFloat(arrowSizeInput.value);
+    let arrowIconCorner = arrowIconCornerInput.checked;
+    let arrowIconTriangle = arrowIconTriangleInput.checked;
+    let arrowXSize = parseFloat(arrowXSizeInput.value);
+    let arrowYSize = parseFloat(arrowYSizeInput.value);
     let arrowColor = arrowColorInput.value;
     let arrowBackgroundWidth = parseFloat(arrowBackgroundWidthInput.value);
     let arrowBackgroundColor = arrowBackgroundColorInput.value;
     
-    let arrowUrl = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23${arrowColor.slice(1)}' d='M3 3L21 3L12 21'/%3E%3C/svg%3E")`;
+    let imgUrl;
+    if(arrowIconTriangle){
+        let offsetX = 12 - arrowXSize;
+        let offsetY = 12 - arrowYSize;
+        imgUrl = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23${arrowColor.slice(1)}' d='M${offsetX} ${offsetY}L12 ${24 - offsetY}L${24 - offsetX} ${offsetY}'/%3E%3C/svg%3E")`;
+    }else if(arrowIconCorner){
+        let offsetX = 12 - arrowXSize;
+        let offsetY = 12 - arrowYSize;
+        imgUrl = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke-width='3' stroke='%23${arrowColor.slice(1)}' d='M${offsetX} ${offsetY}L12 ${24 - offsetY}L${24 - offsetX} ${offsetY}'/%3E%3C/svg%3E")`;
+    }
+
     return `
         #output>select{
             appearance: none;
@@ -52,7 +71,7 @@ update = () => {
             color: ${selectFontColor};
             border-radius: ${selectBorderRadius}px;
             padding-left: 5px;
-            background: ${arrowUrl} no-repeat right calc(${arrowBackgroundWidth / 2}px - ${arrowSize / 2}px) center/${arrowSize}px,
+            background: ${imgUrl} no-repeat right ${arrowBackgroundWidth / 2 - selectHeight / 2}px center/${selectHeight}px,
             linear-gradient(to left, ${arrowBackgroundColor} ${arrowBackgroundWidth}px, ${selectColor} ${arrowBackgroundWidth}px);
         }
 
@@ -75,7 +94,9 @@ random = () => {
     selectColorInput.value = randColor();
     selectBorderColorInput.value = randColor();
     selectFontColorInput.value = randColor();
-    arrowSizeInput.value = randInt(arrowSizeInput.min, arrowSizeInput.max);
+    [arrowIconCornerInput, arrowIconTriangleInput][randInt(0, 2)].checked = true;
+    arrowXSizeInput.value = randInt(arrowXSizeInput.min, arrowXSizeInput.max);
+    arrowYSizeInput.value = randInt(arrowYSizeInput.min, arrowYSizeInput.max);
     arrowColorInput.value = randColor();
     arrowBackgroundWidthInput.value = randInt(arrowBackgroundWidthInput.min, arrowBackgroundWidthInput.max);
     arrowBackgroundColorInput.value = randColor();
