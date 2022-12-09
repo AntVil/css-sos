@@ -9,6 +9,7 @@ let arrowIconCornerInput;
 let arrowIconTriangleInput;
 let arrowXSizeInput;
 let arrowYSizeInput;
+let arrowWidthInput;
 let arrowColorInput;
 let arrowBackgroundWidthInput;
 let arrowBackgroundColorInput;
@@ -25,6 +26,7 @@ setup = () => {
     arrowIconTriangleInput = document.getElementById("arrowIconTriangle");
     arrowXSizeInput = document.getElementById("arrowXSize");
     arrowYSizeInput = document.getElementById("arrowYSize");
+    arrowWidthInput = document.getElementById("arrowWidth");
     arrowColorInput = document.getElementById("arrowColor");
     arrowBackgroundWidthInput = document.getElementById("arrowBackgroundWidth");
     arrowBackgroundColorInput = document.getElementById("arrowBackgroundColor");
@@ -45,19 +47,23 @@ update = () => {
     let arrowIconTriangle = arrowIconTriangleInput.checked;
     let arrowXSize = parseFloat(arrowXSizeInput.value);
     let arrowYSize = parseFloat(arrowYSizeInput.value);
+    let arrowWidth = parseFloat(arrowWidthInput.value);
     let arrowColor = arrowColorInput.value;
     let arrowBackgroundWidth = parseFloat(arrowBackgroundWidthInput.value);
     let arrowBackgroundColor = arrowBackgroundColorInput.value;
     
+    let triangleBigSide = Math.max(arrowXSize, arrowYSize) * 2.5;
+    
     let imgUrl;
     if(arrowIconTriangle){
-        let offsetX = 12 - arrowXSize;
-        let offsetY = 12 - arrowYSize;
+        let offsetX = 12 - 24 * (arrowXSize / triangleBigSide);
+        let offsetY = 12 - 24 * (arrowYSize / triangleBigSide);
         imgUrl = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23${arrowColor.slice(1)}' d='M${offsetX} ${offsetY}L12 ${24 - offsetY}L${24 - offsetX} ${offsetY}'/%3E%3C/svg%3E")`;
     }else if(arrowIconCorner){
-        let offsetX = 12 - arrowXSize;
-        let offsetY = 12 - arrowYSize;
-        imgUrl = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke-width='3' stroke='%23${arrowColor.slice(1)}' d='M${offsetX} ${offsetY}L12 ${24 - offsetY}L${24 - offsetX} ${offsetY}'/%3E%3C/svg%3E")`;
+        let offsetX = 12 - 24 * (arrowXSize / triangleBigSide);
+        let offsetY = 12 - 24 * (arrowYSize / triangleBigSide);
+        let lineWidth = 24 * (arrowWidth / triangleBigSide);
+        imgUrl = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke-width='${lineWidth}' stroke='%23${arrowColor.slice(1)}' stroke-linecap='round' d='M${offsetX} ${offsetY}L12 ${24 - offsetY}L${24 - offsetX} ${offsetY}'/%3E%3C/svg%3E")`;
     }
 
     return `
@@ -71,7 +77,7 @@ update = () => {
             color: ${selectFontColor};
             border-radius: ${selectBorderRadius}px;
             padding-left: 5px;
-            background: ${imgUrl} no-repeat right ${arrowBackgroundWidth / 2 - selectHeight / 2}px center/${selectHeight}px,
+            background: ${imgUrl} no-repeat right ${arrowBackgroundWidth / 2 - triangleBigSide/2}px center/${triangleBigSide}px,
             linear-gradient(to left, ${arrowBackgroundColor} ${arrowBackgroundWidth}px, ${selectColor} ${arrowBackgroundWidth}px);
         }
 
@@ -97,6 +103,7 @@ random = () => {
     [arrowIconCornerInput, arrowIconTriangleInput][randInt(0, 2)].checked = true;
     arrowXSizeInput.value = randInt(arrowXSizeInput.min, arrowXSizeInput.max);
     arrowYSizeInput.value = randInt(arrowYSizeInput.min, arrowYSizeInput.max);
+    arrowWidthInput.value = randInt(arrowWidthInput.min, arrowWidthInput.max);
     arrowColorInput.value = randColor();
     arrowBackgroundWidthInput.value = randInt(arrowBackgroundWidthInput.min, arrowBackgroundWidthInput.max);
     arrowBackgroundColorInput.value = randColor();
