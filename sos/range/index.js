@@ -10,6 +10,7 @@ let thumbBorderWidthInput;
 let thumbBorderRadiusInput;
 let thumbColorInput;
 let thumbBorderColorInput;
+let thumbHoverColorInput;
 
 setup = () => {
     trackWidthInput = document.getElementById("trackWidth");
@@ -24,6 +25,7 @@ setup = () => {
     thumbBorderRadiusInput = document.getElementById("thumbBorderRadius");
     thumbColorInput = document.getElementById("thumbColor");
     thumbBorderColorInput = document.getElementById("thumbBorderColor");
+    thumbHoverColorInput = document.getElementById("thumbHoverColor");
 
     random();
 }
@@ -41,6 +43,7 @@ update = () => {
     let thumbBorderRadius = parseFloat(thumbBorderRadiusInput.value);
     let thumbColor = thumbColorInput.value;
     let thumbBorderColor = thumbBorderColorInput.value;
+    let thumbHoverColor = thumbHoverColorInput.value;
     
     return `
         #output>input[type="range"]{
@@ -95,6 +98,20 @@ update = () => {
         #output>input[type="range"]:disabled{
             filter: grayscale(100%);
         }
+        
+        @media (hover: hover) {
+            #output>input[type="range"]:not([disabled]){
+                cursor: pointer;
+            }
+            
+            #output>input[type="range"]:not([disabled]):hover::-webkit-slider-thumb{
+                background-color: ${thumbHoverColor};
+            }
+            
+            #output>input[type="range"]:not([disabled]):hover::-moz-range-thumb{
+                background-color: ${thumbHoverColor};
+            }
+        }
     `;
 }
 
@@ -111,10 +128,11 @@ random = () => {
     thumbBorderRadiusInput.value = randInt(thumbBorderRadiusInput.min, thumbBorderRadiusInput.max);
     thumbColorInput.value = randColor();
     thumbBorderColorInput.value = randColor();
+    thumbHoverColorInput.value = randColor();
 }
 
 clipboard = () => {
     let code = sos.innerHTML;
-    code = code.replaceAll("        ", "").replaceAll("#output>", "");
+    code = code.replaceAll(/^        /g, "").replaceAll("#output>", "");
     navigator.clipboard.writeText(code);
 }

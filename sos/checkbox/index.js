@@ -8,6 +8,7 @@ let checkIconCrossInput;
 let checkSizeInput;
 let checkWidthInput;
 let checkColorInput;
+let checkHoverColorInput;
 
 setup = () => {
     checkboxSizeInput = document.getElementById("checkboxSize");
@@ -20,6 +21,7 @@ setup = () => {
     checkSizeInput = document.getElementById("checkSize");
     checkWidthInput = document.getElementById("checkWidth");
     checkColorInput = document.getElementById("checkColor");
+    checkHoverColorInput = document.getElementById("checkHoverColor");
     
     random();
 }
@@ -35,6 +37,7 @@ update = () => {
     let checkSize = parseFloat(checkSizeInput.value);
     let checkWidth = parseFloat(checkWidthInput.value);
     let checkColor = checkColorInput.value;
+    let checkHoverColor = checkHoverColorInput.value;
     
     let imgUrl;
     if(checkIconCheck){
@@ -87,6 +90,13 @@ update = () => {
         #output>input[type="checkbox"]:disabled{
             filter: grayscale(100%);
         }
+
+        @media (hover: hover) {
+            #output>input[type="checkbox"]:not([disabled]):checked:hover::after{
+                background-color: ${checkHoverColor};
+                cursor: pointer;
+            }
+        }
     `;
 }
 
@@ -100,10 +110,11 @@ random = () => {
     checkSizeInput.value = randInt(checkSizeInput.min, checkSizeInput.max);
     checkWidthInput.value = randInt(checkWidthInput.min, checkWidthInput.max);
     checkColorInput.value = randColor();
+    checkHoverColorInput.value = randColor();
 }
 
 clipboard = () => {
     let code = sos.innerHTML;
-    code = code.replaceAll("        ", "").replaceAll("#output>", "");
+    code = code.replaceAll(/^        /g, "").replaceAll("#output>", "");
     navigator.clipboard.writeText(code);
 }

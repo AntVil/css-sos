@@ -10,7 +10,9 @@ let thumbBorderWidthInput;
 let thumbBorderRadiusInput;
 let thumbColorInput;
 let thumbBorderColorInput;
+let thumbHoverColorInput;
 let progressColorInput;
+let progressHoverColorInput;
 
 setup = () => {
     trackWidthInput = document.getElementById("trackWidth");
@@ -25,7 +27,9 @@ setup = () => {
     thumbBorderRadiusInput = document.getElementById("thumbBorderRadius");
     thumbColorInput = document.getElementById("thumbColor");
     thumbBorderColorInput = document.getElementById("thumbBorderColor");
+    thumbHoverColorInput = document.getElementById("thumbHoverColor");
     progressColorInput = document.getElementById("progressColor");
+    progressHoverColorInput = document.getElementById("progressHoverColor");
 
     random();
 }
@@ -43,7 +47,9 @@ update = () => {
     let thumbBorderRadius = parseFloat(thumbBorderRadiusInput.value);
     let thumbColor = thumbColorInput.value;
     let thumbBorderColor = thumbBorderColorInput.value;
+    let thumbHoverColor = thumbHoverColorInput.value;
     let progressColor = progressColorInput.value;
+    let progressHoverColor = progressHoverColorInput.value;
 
     if(thumbHeight + 2 * thumbBorderWidth <= trackHeight){
         return `
@@ -112,6 +118,28 @@ update = () => {
 
             #output>input[type="range"]:disabled{
                 filter: grayscale(100%);
+            }
+        
+            @media (hover: hover) {
+                #output>input[type="range"]:not([disabled]){
+                    cursor: pointer;
+                }
+                
+                #output>input[type="range"]:not([disabled]):hover::-webkit-slider-thumb{
+                    background-color: ${thumbHoverColor};
+                }
+                
+                #output>input[type="range"]:not([disabled]):hover::-moz-range-thumb{
+                    background-color: ${thumbHoverColor};
+                }
+
+                #output>input[type="range"]:not([disabled]):hover::-webkit-slider-thumb{
+                    box-shadow: calc(-100vw - ${thumbWidth + 2 * thumbBorderWidth}px) 0 0 100vw ${progressHoverColor};
+                }
+
+                #output>input[type="range"]:not([disabled]):hover::-moz-range-progress{
+                    background-color: ${progressHoverColor};
+                }
             }
         `;
     }else{
@@ -200,6 +228,28 @@ update = () => {
             #output>input[type="range"]:disabled{
                 filter: grayscale(100%);
             }
+        
+            @media (hover: hover) {
+                #output>input[type="range"]:not([disabled]){
+                    cursor: pointer;
+                }
+                
+                #output>input[type="range"]:not([disabled]):hover::-webkit-slider-thumb{
+                    background-color: ${thumbHoverColor};
+                }
+                
+                #output>input[type="range"]:not([disabled]):hover::-moz-range-thumb{
+                    background-color: ${thumbHoverColor};
+                }
+
+                #output>input[type="range"]:not([disabled]):hover::-webkit-slider-thumb{
+                    box-shadow: calc(-100vw - ${thumbWidth + 2 * thumbBorderWidth}px) 0 0 100vw ${progressHoverColor};
+                }
+
+                #output>input[type="range"]:not([disabled]):hover::-moz-range-progress{
+                    background-color: ${progressHoverColor};
+                }
+            }
         `;
     }
 }
@@ -217,11 +267,13 @@ random = () => {
     thumbBorderRadiusInput.value = randInt(thumbBorderRadiusInput.min, thumbBorderRadiusInput.max);
     thumbColorInput.value = randColor();
     thumbBorderColorInput.value = randColor();
+    thumbHoverColorInput.value = randColor();
     progressColorInput.value = randColor();
+    progressHoverColorInput.value = randColor();
 }
 
 clipboard = () => {
     let code = sos.innerHTML;
-    code = code.replaceAll("        ", "").replaceAll("#output>", "");
+    code = code.replaceAll(/^                /g, "").replaceAll("#output>", "");
     navigator.clipboard.writeText(code);
 }

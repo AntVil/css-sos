@@ -77,6 +77,6 @@ random = () => {
 
 clipboard = () => {
     let code = sos.innerHTML;
-    code = code.replaceAll("        ", "").replaceAll("#output>", "");
+    code = code.replaceAll(/^            /g, "").replaceAll("#output>", "");
     navigator.clipboard.writeText(code);
 }

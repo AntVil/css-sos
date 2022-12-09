@@ -12,6 +12,7 @@ let thumbOffsetInput;
 let thumbBorderRadiusInput;
 let thumbColorInput;
 let thumbBorderColorInput;
+let thumbHoverColorInput;
 
 setup = () => {
     trackWidthInput = document.getElementById("trackWidth");
@@ -28,6 +29,7 @@ setup = () => {
     thumbBorderRadiusInput = document.getElementById("thumbBorderRadius");
     thumbColorInput = document.getElementById("thumbColor");
     thumbBorderColorInput = document.getElementById("thumbBorderColor");
+    thumbHoverColorInput = document.getElementById("thumbHoverColor");
 
     random();
 }
@@ -47,6 +49,7 @@ update = () => {
     let thumbBorderRadius = parseFloat(thumbBorderRadiusInput.value);
     let thumbColor = thumbColorInput.value;
     let thumbBorderColor = thumbBorderColorInput.value;
+    let thumbHoverColor = thumbHoverColorInput.value;
     
     return `
         #output>input[type="checkbox"]{
@@ -93,6 +96,17 @@ update = () => {
         #output>input[type="checkbox"]:disabled{
             filter: grayscale(100%);
         }
+        
+        @media (hover: hover) {
+            #output>input[type="checkbox"]:not([disabled]):hover::before{
+                cursor: pointer;
+            }
+            
+            #output>input[type="checkbox"]:not([disabled]):hover::after{
+                background-color: ${thumbHoverColor};
+                cursor: pointer;
+            }
+        }
     `;
 }
 
@@ -111,10 +125,11 @@ random = () => {
     thumbBorderRadiusInput.value = randInt(thumbBorderRadiusInput.min, thumbBorderRadiusInput.max);
     thumbColorInput.value = randColor();
     thumbBorderColorInput.value = randColor();
+    thumbHoverColorInput.value = randColor();
 }
 
 clipboard = () => {
     let code = sos.innerHTML;
-    code = code.replaceAll("        ", "").replaceAll("#output>", "");
+    code = code.replaceAll(/^        /g, "").replaceAll("#output>", "");
     navigator.clipboard.writeText(code);
 }
