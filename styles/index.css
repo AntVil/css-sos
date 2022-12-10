@@ -10,17 +10,33 @@
     box-sizing: border-box;
 }
 
+html{
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scrollbar-color: var(--theme-color-0) var(--theme-color-1);
+    scrollbar-width: thin;
+}
+
+html::-webkit-scrollbar{
+    background-color: var(--theme-color-1);
+    width: 8px;
+}
+
+html::-webkit-scrollbar-thumb{
+    background-color: var(--theme-color-0);
+}
+
 body{
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-rows: var(--header-height) auto var(--footer-height);
-    position: fixed;
+    position: absolute;
     left: 0;
     top: 0;
     width: var(--screen-width);
-    height: var(--screen-height);
+    min-height: var(--screen-height);
     margin: 0;
-    overflow: hidden;
+    overflow-x: hidden;
     background-color: var(--theme-color-0);
 }
 
@@ -63,13 +79,16 @@ main{
 
 
 @media (max-width: 700px){
+    html{
+        overflow-y: scroll;
+    }
+
     body{
         position: unset;
         height: unset;
         min-height: var(--screen-height);
         grid-template-columns: 1fr;
         grid-template-rows: var(--header-height) auto min-content var(--footer-height);
-        overflow-y: scroll;
     }
 
     header{
@@ -83,10 +102,15 @@ main{
     nav{
         grid-row: 3 / span 1;
         padding: 5px 0;
+        font-size: large;
     }
 
     footer{
         grid-row: 4 / span 1;
+    }
+
+    nav>*{
+        padding: 5px;
     }
 }
 
@@ -151,11 +175,14 @@ main>button{
     border: 0;
     border-radius: 5px;
     background-color: var(--theme-color-0);
+    padding: 5px;
 }
 
-main>button:hover{
-    background-color: var(--theme-color-3);
-    cursor: pointer;
+@media (hover: hover) {
+    main>button:hover{
+        background-color: var(--theme-color-3);
+        cursor: pointer;
+    }
 }
 
 main>button:last-child{
