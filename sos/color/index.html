@@ -3,9 +3,9 @@
     <head>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-        <title>css-sos-scrollbar</title>
+        <title>css-sos-gradient</title>
         <link rel="icon" href="../../icon.svg">
-        <meta name=description content="cross-browser pure CSS Generator for scrollbar element">
+        <meta name=description content="cross-browser pure CSS Generator for gradient element">
 
         <link rel="stylesheet" type="text/css" href="../../styles/themes.css">
         <link rel="stylesheet" type="text/css" href="../../styles/index.css">
@@ -35,28 +35,22 @@
         </nav>
         <main>
             <section id="controls">
-                <label for="trackStyle">track style</label>
-                <div>
-                    <input id="trackStyleThin" type="radio" name="trackStyle" checked>
-                    <input id="trackStyleThick" type="radio" name="trackStyle">
-                </div>
-                <label for="trackColor">track color</label>
-                <input id="trackColor" type="color">
-                <label for="thumbColor">thumb color</label>
-                <input id="thumbColor" type="color">
+                <label for="pickerWidth">picker width</label>
+                <input id="pickerWidth" type="range" min="15" max="120">
+                <label for="pickerHeight">picker height</label>
+                <input id="pickerHeight" type="range" min="15" max="30">
+                <label for="pickerBorderWidth">picker border width</label>
+                <input id="pickerBorderWidth" type="range" min="0" max="5">
+                <label for="pickerBorderRadius">picker border radius</label>
+                <input id="pickerBorderRadius" type="range" min="0" max="10">
+                <label for="pickerBorderColor">picker border color</label>
+                <input id="pickerBorderColor" type="color">
             </section>
             <section id="output">
-                <div class="scroll" style="width: 180px;height: 100px;">
-                    Content Content Content<br>
-                    Content Content Content<br>
-                    Content Content Content<br>
-                    Content Content Content<br>
-                    Content Content Content<br>
-                    Content Content Content<br>
-                    Content Content Content<br>
-                    Content Content Content<br>
-                    Content Content Content
-                </div>
+                <label for="output0">color</label>
+                <input id="output0" type="color" value="#F00" />
+                <label for="output1">disabled color</label>
+                <input id="output1" type="color" value="#F00" disabled />
             </section>
             <button onclick="random()">random</button>
             <button onclick="clipboard()">clipboard</button>
