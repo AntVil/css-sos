@@ -21,9 +21,10 @@ body{
     height: var(--screen-height);
     margin: 0;
     overflow: hidden;
+    background-color: var(--theme-color-0);
 }
 
-body>header, body>footer{
+header, footer{
     display: grid;
     justify-content: center;
     align-items: center;
@@ -31,12 +32,12 @@ body>header, body>footer{
     background-color: var(--theme-color-0);
 }
 
-body>header>h1{
+h1{
     margin: 0;
     text-align: center;
 }
 
-body>nav{
+nav{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -45,19 +46,79 @@ body>nav{
     gap: 5px;
 }
 
-body>nav>*{
+nav>*{
     cursor: pointer;
     text-decoration: underline;
     padding: 0 15px;
 }
 
-body>main{
+main{
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr auto;
     background-color: var(--theme-color-2);
     gap: 5px;
     padding: 5px;
+}
+
+
+@media (max-width: 700px){
+    body{
+        position: unset;
+        height: unset;
+        min-height: var(--screen-height);
+        grid-template-columns: 1fr;
+        grid-template-rows: var(--header-height) auto min-content var(--footer-height);
+        overflow-y: scroll;
+    }
+
+    header{
+        grid-row: 1 / span 1;
+    }
+
+    footer{
+        grid-row: 2 / span 1;
+    }
+
+    nav{
+        grid-row: 3 / span 1;
+        padding: 5px 0;
+    }
+
+    footer{
+        grid-row: 4 / span 1;
+    }
+}
+
+@media (max-width: 400px){
+    header{
+        position: sticky;
+        top: 0;
+        z-index: 2;
+    }
+
+    h1{
+        z-index: 2;
+    }
+
+    main{
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr min-content min-content;
+        padding: 0;
+    }
+
+    main>*:not(#output){
+        margin: 0 5px 5px 5px;
+    }
+
+    #output{
+        grid-row: 1 / span 1;
+        position: sticky;
+        top: var(--header-height);
+        z-index: 1;
+        background-color: var(--theme-color-1);
+        padding: 5px;
+    }
 }
 
 #controls{
@@ -299,4 +360,23 @@ main>button:last-child:active::after{
         filter: brightness(120%);
         cursor: pointer;
     }
+}
+
+#controls>input[type="color"]{
+    border-radius: 5px;
+    padding: 0;
+    border: 5px solid var(--theme-color-0);
+}
+
+#controls>input[type="color"]::-moz-color-swatch{
+    border: none;
+}
+
+#controls>input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+    border-radius: 0;
+}
+
+#controls>input[type="color"]::-webkit-color-swatch {
+    border: none;
 }
