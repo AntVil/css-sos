@@ -13,6 +13,7 @@
 html{
     overflow-x: hidden;
     overflow-y: scroll;
+    height: var(--screen-height);
     scrollbar-color: var(--theme-color-0) var(--theme-color-1);
     scrollbar-width: thin;
 }
@@ -34,9 +35,9 @@ body{
     left: 0;
     top: 0;
     width: var(--screen-width);
+    height: max-content;
     min-height: var(--screen-height);
     margin: 0;
-    overflow-x: hidden;
     background-color: var(--theme-color-0);
 }
 
