@@ -35,11 +35,49 @@
         </nav>
         <main>
             <section id="controls">
-                coming soon
+                <label for="buttonWidth">button width</label>
+                <input id="buttonWidth" type="range" min="70" max="120" />
+                <label for="buttonHeight">button height</label>
+                <input id="buttonHeight" type="range" min="20" max="30" />
+                <label for="buttonBorderWidth">button border width</label>
+                <input id="buttonBorderWidth" type="range" min="0" max="5" />
+                <label for="buttonBorderRadius">button border radius</label>
+                <input id="buttonBorderRadius" type="range" min="0" max="5" />
+                <label for="buttonColor">button color</label>
+                <input id="buttonColor" type="color" />
+                <label for="buttonBorderColor">button border color</label>
+                <input id="buttonBorderColor" type="color" />
+                <label for="buttonFontColor">button font color</label>
+                <input id="buttonFontColor" type="color" />
+                <label for="buttonHoverColor">button hover color</label>
+                <input id="buttonHoverColor" type="color" />
+                <label for="info">info</label>
+                <input id="info" type="checkbox" />
+                <label for="infoTrigger">info trigger</label>
+                <div>
+                    <input id="infoTriggerHover" type="radio" name="infoTrigger" checked />
+                    <input id="infoTriggerClicked" type="radio" name="infoTrigger" />
+                </div>
+                <label for="infoLocation">info location</label>
+                <input id="infoLocation" type="range" min="5" max="30" />
+                <label for="infoText">info text</label>
+                <input id="infoText" type="text" />
+                <label for="infoTimespan">info timespan</label>
+                <input id="infoTimespan" type="range" min="5" max="30" />
+                <label for="infoWidth">info width</label>
+                <input id="infoWidth" type="range" min="70" max="120" />
+                <label for="infoHeight">info height</label>
+                <input id="infoHeight" type="range" min="20" max="30" />
+                <label for="infoArrowLength">info arrow length</label>
+                <input id="infoArrowLength" type="range" min="0" max="20" />
+                <label for="infoArrowSize">info arrow size</label>
+                <input id="infoArrowSize" type="range" min="0" max="30" />
             </section>
             <section id="output">
-                <button>click me</button>
-                <button disabled>click me</button>
+                <label for="output0">button</label>
+                <button id="output0">click me</button>
+                <label for="output1">disabled button</label>
+                <button id="output1" disabled>click me</button>
             </section>
             <button onclick="random()">random</button>
             <button onclick="clipboard()">clipboard</button>
