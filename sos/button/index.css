@@ -1,0 +1,11 @@
+#controls>div{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#info:not(:checked)~*[for^="info"],
+#info:not(:checked)~*[id^=info],
+#info:not(:checked)~*:has([id^=info]){
+    display: none;
+}

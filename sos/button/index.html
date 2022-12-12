@@ -59,11 +59,16 @@
                     <input id="infoTriggerClicked" type="radio" name="infoTrigger" />
                 </div>
                 <label for="infoLocation">info location</label>
-                <input id="infoLocation" type="range" min="5" max="30" />
+                <div>
+                    <input id="infoLocationTop" type="radio" name="infoLocation" />
+                    <input id="infoLocationRight" type="radio" name="infoLocation" />
+                    <input id="infoLocationBottom" type="radio" name="infoLocation" />
+                    <input id="infoLocationLeft" type="radio" name="infoLocation" />
+                </div>
                 <label for="infoText">info text</label>
                 <input id="infoText" type="text" />
                 <label for="infoTimespan">info timespan</label>
-                <input id="infoTimespan" type="range" min="5" max="30" />
+                <input id="infoTimespan" type="range" min="0" max="2" step="0.1" />
                 <label for="infoWidth">info width</label>
                 <input id="infoWidth" type="range" min="70" max="120" />
                 <label for="infoHeight">info height</label>
@@ -72,6 +77,10 @@
                 <input id="infoArrowLength" type="range" min="0" max="20" />
                 <label for="infoArrowSize">info arrow size</label>
                 <input id="infoArrowSize" type="range" min="0" max="30" />
+                <label for="infoColor">info color</label>
+                <input id="infoColor" type="color" />
+                <label for="infoFontColor">info font color</label>
+                <input id="infoFontColor" type="color" />
             </section>
             <section id="output">
                 <label for="output0">button</label>
