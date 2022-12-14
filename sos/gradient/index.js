@@ -46,17 +46,18 @@ update = () => {
         [color2Input.value, parseFloat(colorPosition2Input.value)],
         [color3Input.value, parseFloat(colorPosition3Input.value)],
         [color4Input.value, parseFloat(colorPosition4Input.value)]
-    ];
+    ].slice(0, colorCount);
 
-    if(stepGradient){
-        colors.sort((a, b) => a[1] - b[1])
-    }
+    colors.sort((a, b) => a[1] - b[1]);
 
     colorCountInput.setAttribute("value", colorCountInput.value);
 
     let steps = "";
     for(let i=0;i<colorCount;i++){
         steps += `, ${colors[i][0]} ${colors[i][1]}%`;
+        if(stepGradient && i != colorCount-1){
+            steps += `, ${colors[i+1][0]} ${colors[i][1]}%`;
+        }
     }
     let gradient;
     if(gradientTypeLinear){
@@ -64,7 +65,7 @@ update = () => {
     }else if(gradientTypeRadial){
         gradient = `radial-gradient(${steps.slice(2)})`;
     }
-    
+
     return `
         #output>*{
             background: ${gradient};
