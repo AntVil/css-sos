@@ -35,10 +35,40 @@
         </nav>
         <main>
             <section id="controls">
-                coming soon
+                <label for="gradientType">gradient type</label>
+                <div>
+                    <input id="gradientTypeLinear" type="radio" name="gradientType" checked />
+                    <input id="gradientTypeRadial" type="radio" name="gradientType" />
+                </div>
+                <label for="gradientAngle">gradient angle</label>
+                <input id="gradientAngle" type="range" min="0" max="360" />
+                <label for="stepGradient">step gradient</label>
+                <input id="stepGradient" type="checkbox" />
+                <label for="colorCount">color count</label>
+                <input id="colorCount" type="range" min="2" max="5" />
+                <label for="color0">color 0</label>
+                <input id="color0" type="color" />
+                <label for="color1">color 1</label>
+                <input id="color1" type="color" />
+                <label for="color2">color 2</label>
+                <input id="color2" type="color" />
+                <label for="color3">color 3</label>
+                <input id="color3" type="color" />
+                <label for="color4">color 4</label>
+                <input id="color4" type="color" />
+                <label for="colorPosition0">color position 0</label>
+                <input id="colorPosition0" type="range" min="0" max="100" />
+                <label for="colorPosition1">color position 1</label>
+                <input id="colorPosition1" type="range" min="0" max="100" />
+                <label for="colorPosition2">color position 2</label>
+                <input id="colorPosition2" type="range" min="0" max="100" />
+                <label for="colorPosition3">color position 3</label>
+                <input id="colorPosition3" type="range" min="0" max="100" />
+                <label for="colorPosition4">color position 4</label>
+                <input id="colorPosition4" type="range" min="0" max="100" />
             </section>
             <section id="output">
-                <div></div>
+                <div style="width: 80%; aspect-ratio: 1 / 1;"></div>
             </section>
             <button onclick="random()">random</button>
             <button onclick="clipboard()">clipboard</button>

@@ -1,98 +1,92 @@
-let trackWidthInput;
-let trackHeightInput;
-let trackBorderWidthInput;
-let trackBorderRadiusInput;
-let trackColorInput;
-let trackBorderColorInput;
-let thumbWidthInput;
-let thumbHeightInput;
-let thumbBorderWidthInput;
-let thumbBorderRadiusInput;
-let thumbColorInput;
-let thumbBorderColorInput;
+let gradientTypeLinearInput;
+let gradientTypeRadialInput;
+let gradientAngleInput;
+let stepGradientInput;
+let colorCountInput;
+let color0Input;
+let color1Input;
+let color2Input;
+let color3Input;
+let color4Input;
+let colorPosition0Input;
+let colorPosition1Input;
+let colorPosition2Input;
+let colorPosition3Input;
+let colorPosition4Input;
 
 setup = () => {
-    trackWidthInput = document.getElementById("trackWidth");
-    trackHeightInput = document.getElementById("trackHeight");
-    trackBorderWidthInput = document.getElementById("trackBorderWidth");
-    trackBorderRadiusInput = document.getElementById("trackBorderRadius");
-    trackColorInput = document.getElementById("trackColor");
-    trackBorderColorInput = document.getElementById("trackBorderColor");
-    thumbWidthInput = document.getElementById("thumbWidth");
-    thumbHeightInput = document.getElementById("thumbHeight");
-    thumbBorderWidthInput = document.getElementById("thumbBorderWidth");
-    thumbBorderRadiusInput = document.getElementById("thumbBorderRadius");
-    thumbColorInput = document.getElementById("thumbColor");
-    thumbBorderColorInput = document.getElementById("thumbBorderColor");
+    gradientTypeLinearInput = document.getElementById("gradientTypeLinear");
+    gradientTypeRadialInput = document.getElementById("gradientTypeRadial");
+    gradientAngleInput = document.getElementById("gradientAngle");
+    stepGradientInput = document.getElementById("stepGradient");
+    colorCountInput = document.getElementById("colorCount");
+    color0Input = document.getElementById("color0");
+    color1Input = document.getElementById("color1");
+    color2Input = document.getElementById("color2");
+    color3Input = document.getElementById("color3");
+    color4Input = document.getElementById("color4");
+    colorPosition0Input = document.getElementById("colorPosition0");
+    colorPosition1Input = document.getElementById("colorPosition1");
+    colorPosition2Input = document.getElementById("colorPosition2");
+    colorPosition3Input = document.getElementById("colorPosition3");
+    colorPosition4Input = document.getElementById("colorPosition4");
 
     random();
 }
 
 update = () => {
-    let trackWidth = parseFloat(trackWidthInput.value);
-    let trackHeight = parseFloat(trackHeightInput.value);
-    let trackBorderWidth = parseFloat(trackBorderWidthInput.value);
-    let trackBorderRadius = parseFloat(trackBorderRadiusInput.value);
-    let trackColor = trackColorInput.value;
-    let trackBorderColor = trackBorderColorInput.value;
-    let thumbWidth = parseFloat(thumbWidthInput.value);
-    let thumbHeight = parseFloat(thumbHeightInput.value);
-    let thumbBorderWidth = parseFloat(thumbBorderWidthInput.value);
-    let thumbBorderRadius = parseFloat(thumbBorderRadiusInput.value);
-    let thumbColor = thumbColorInput.value;
-    let thumbBorderColor = thumbBorderColorInput.value;
+    let gradientTypeLinear = gradientTypeLinearInput.checked;
+    let gradientTypeRadial = gradientTypeRadialInput.checked;
+    let gradientAngle = parseFloat(gradientAngleInput.value);
+    let stepGradient = stepGradientInput.checked;
+    let colorCount = parseFloat(colorCountInput.value);
+    let colors = [
+        [color0Input.value, parseFloat(colorPosition0Input.value)],
+        [color1Input.value, parseFloat(colorPosition1Input.value)],
+        [color2Input.value, parseFloat(colorPosition2Input.value)],
+        [color3Input.value, parseFloat(colorPosition3Input.value)],
+        [color4Input.value, parseFloat(colorPosition4Input.value)]
+    ];
+
+    if(stepGradient){
+        colors.sort((a, b) => a[1] - b[1])
+    }
+
+    colorCountInput.setAttribute("value", colorCountInput.value);
+
+    let steps = "";
+    for(let i=0;i<colorCount;i++){
+        steps += `, ${colors[i][0]} ${colors[i][1]}%`;
+    }
+    let gradient;
+    if(gradientTypeLinear){
+        gradient = `linear-gradient(${gradientAngle}deg${steps})`;
+    }else if(gradientTypeRadial){
+        gradient = `radial-gradient(${steps.slice(2)})`;
+    }
     
     return `
-        #output>input[type="checkbox"]{
-            appearance: none;
-        }
-
-        #output>input[type="checkbox"]::before{
-            position: absolute;
-            content: "";
-            display: block;
-            width: ${trackWidth}px;
-            height: ${trackHeight}px;
-            border: ${trackBorderWidth}px solid ${trackBorderColor};
-            border-radius: ${trackBorderRadius}px;
-            background-color: ${trackColor};
-        }
-
-        #output>input[type="checkbox"]::after{
-            position: absolute;
-            content: "";
-            display: block;
-            width: ${thumbWidth}px;
-            height: ${thumbHeight}px;
-            transform: translate(0, ${(trackHeight + 2 * trackBorderWidth - thumbHeight - 2 * thumbBorderWidth) / 2}px);
-            border: ${thumbBorderWidth}px solid ${thumbBorderColor};
-            border-radius: ${thumbBorderRadius}px;
-            background-color: ${thumbColor};
-        }
-
-        #output>input[type="checkbox"]:checked::after{
-            transform: translate(${trackWidth + 2 * trackBorderWidth - thumbWidth - 2 * thumbBorderWidth}px, ${(trackHeight + 2 * trackBorderWidth - thumbHeight - 2 * thumbBorderWidth) / 2}px);
-        }
-
-        #output>input[type="checkbox"]:disabled{
-            filter: grayscale(100%);
+        #output>*{
+            background: ${gradient};
         }
     `;
 }
 
 random = () => {
-    trackWidthInput.value = randInt(trackWidthInput.min, trackWidthInput.max);
-    trackHeightInput.value = randInt(trackHeightInput.min, trackHeightInput.max);
-    trackBorderWidthInput.value = randInt(trackBorderWidthInput.min, trackBorderWidthInput.max);
-    trackBorderRadiusInput.value = randInt(trackBorderRadiusInput.min, trackBorderRadiusInput.max);
-    trackColorInput.value = randColor();
-    trackBorderColorInput.value = randColor();
-    thumbWidthInput.value = randInt(thumbWidthInput.min, thumbWidthInput.max);
-    thumbHeightInput.value = randInt(thumbHeightInput.min, thumbHeightInput.max);
-    thumbBorderWidthInput.value = randInt(thumbBorderWidthInput.min, thumbBorderWidthInput.max);
-    thumbBorderRadiusInput.value = randInt(thumbBorderRadiusInput.min, thumbBorderRadiusInput.max);
-    thumbColorInput.value = randColor();
-    thumbBorderColorInput.value = randColor();
+    [gradientTypeLinearInput, gradientTypeRadialInput][randInt(0, 2)].checked = true;
+    gradientAngleInput.value = randInt(gradientAngleInput.min, gradientAngleInput.max);
+    stepGradientInput.checked = randBool();
+    colorCountInput.value = randInt(colorCountInput.min, colorCountInput.max);
+    color0Input.value = randColor();
+    color1Input.value = randColor();
+    color2Input.value = randColor();
+    color3Input.value = randColor();
+    color4Input.value = randColor();
+    colorPosition0Input.value = randInt(colorPosition0Input.min, colorPosition0Input.max);
+    colorPosition1Input.value = randInt(colorPosition1Input.min, colorPosition1Input.max);
+    colorPosition2Input.value = randInt(colorPosition2Input.min, colorPosition2Input.max);
+    colorPosition3Input.value = randInt(colorPosition3Input.min, colorPosition3Input.max);
+    colorPosition4Input.value = randInt(colorPosition4Input.min, colorPosition4Input.max);
 }
 
 clipboard = () => {

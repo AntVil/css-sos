@@ -1,0 +1,22 @@
+#stepGradient:checked~#colorCount[value*="2"]~*[id*="Position1"],
+#stepGradient:checked~#colorCount[value*="2"]~*[for*="Position1"],
+#stepGradient:checked~#colorCount[value*="3"]~*[id*="Position2"],
+#stepGradient:checked~#colorCount[value*="3"]~*[for*="Position2"],
+#stepGradient:checked~#colorCount[value*="4"]~*[id*="Position3"],
+#stepGradient:checked~#colorCount[value*="4"]~*[for*="Position3"],
+#stepGradient:checked~#colorCount[value*="5"]~*[id*="Position4"],
+#stepGradient:checked~#colorCount[value*="5"]~*[for*="Position4"],
+#colorCount[value*="2"]~*[id*="2"],
+#colorCount[value*="2"]~*[for*="2"],
+#colorCount[value*="2"]~*[id*="3"],
+#colorCount[value*="2"]~*[for*="3"],
+#colorCount[value*="2"]~*[id*="4"],
+#colorCount[value*="2"]~*[for*="4"],
+#colorCount[value*="3"]~*[id*="3"],
+#colorCount[value*="3"]~*[for*="3"],
+#colorCount[value*="3"]~*[id*="4"],
+#colorCount[value*="3"]~*[for*="4"],
+#colorCount[value*="4"]~*[id*="4"],
+#colorCount[value*="4"]~*[for*="4"]{
+    display: none;
+}
