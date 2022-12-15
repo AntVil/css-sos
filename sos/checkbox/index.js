@@ -92,9 +92,12 @@ update = () => {
         }
 
         @media (hover: hover) {
+            #output>input[type="checkbox"]:not([disabled]){
+                cursor: pointer;
+            }
+
             #output>input[type="checkbox"]:not([disabled]):checked:hover::after{
                 background-color: ${checkHoverColor};
-                cursor: pointer;
             }
         }
     `;
