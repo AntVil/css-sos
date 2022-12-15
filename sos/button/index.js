@@ -7,8 +7,8 @@ let buttonBorderColorInput;
 let buttonFontColorInput;
 let buttonHoverColorInput;
 let infoInput;
-let infoTriggerHoverInput;
 let infoTriggerClickedInput;
+let infoTriggerHoverInput;
 let infoLocationTopInput;
 let infoLocationRightInput;
 let infoLocationBottomInput;
@@ -32,8 +32,8 @@ setup = () => {
     buttonFontColorInput = document.getElementById("buttonFontColor");
     buttonHoverColorInput = document.getElementById("buttonHoverColor");
     infoInput = document.getElementById("info");
-    infoTriggerHoverInput = document.getElementById("infoTriggerHover");
     infoTriggerClickedInput = document.getElementById("infoTriggerClicked");
+    infoTriggerHoverInput = document.getElementById("infoTriggerHover");
     infoLocationTopInput = document.getElementById("infoLocationTop");
     infoLocationRightInput = document.getElementById("infoLocationRight");
     infoLocationBottomInput = document.getElementById("infoLocationBottom");
@@ -60,8 +60,8 @@ update = () => {
     let buttonFontColor = buttonFontColorInput.value;
     let buttonHoverColor = buttonHoverColorInput.value;
     let info = infoInput.checked;
-    let infoTriggerHover = infoTriggerHoverInput.checked;
     let infoTriggerClicked = infoTriggerClickedInput.checked;
+    let infoTriggerHover = infoTriggerHoverInput.checked;
     let infoLocationTop = infoLocationTopInput.checked;
     let infoLocationRight = infoLocationRightInput.checked;
     let infoLocationBottom = infoLocationBottomInput.checked;
@@ -154,7 +154,7 @@ update = () => {
                 }
             }
         `;
-    }else if(infoTriggerHover){
+    }else if(infoTriggerClicked){
         return `
             #output>button{
                 position: relative;
@@ -238,7 +238,7 @@ update = () => {
                 }
             }
         `;
-    }else if(infoTriggerClicked){
+    }else if(infoTriggerHover){
         return `
             #output>button{
                 position: relative;
@@ -335,9 +335,8 @@ random = () => {
     buttonFontColorInput.value = randColor();
     buttonHoverColorInput.value = randColor();
     infoInput.checked = randBool();
-    [infoTriggerHoverInput, infoTriggerClickedInput][randInt(0, 2)].checked = true;
+    [infoTriggerClickedInput, infoTriggerHoverInput][randInt(0, 2)].checked = true;
     [infoLocationTopInput, infoLocationRightInput, infoLocationBottomInput, infoLocationLeftInput][randInt(0, 4)].checked = true;
-    infoTextInput.value = "info text";
     infoTimespanInput.value = randFloat(infoTimespanInput.min, infoTimespanInput.max);
     infoWidthInput.value = randInt(infoWidthInput.min, infoWidthInput.max);
     infoHeightInput.value = randInt(infoHeightInput.min, infoHeightInput.max);

@@ -83,11 +83,14 @@ random = () => {
     color2Input.value = randColor();
     color3Input.value = randColor();
     color4Input.value = randColor();
-    colorPosition0Input.value = randInt(colorPosition0Input.min, colorPosition0Input.max);
-    colorPosition1Input.value = randInt(colorPosition1Input.min, colorPosition1Input.max);
-    colorPosition2Input.value = randInt(colorPosition2Input.min, colorPosition2Input.max);
-    colorPosition3Input.value = randInt(colorPosition3Input.min, colorPosition3Input.max);
-    colorPosition4Input.value = randInt(colorPosition4Input.min, colorPosition4Input.max);
+
+    let percentages = [randInt(0, 100), randInt(0, 100), randInt(0, 100), randInt(0, 100), randInt(0, 100)].sort((a, b) => a - b);
+
+    colorPosition0Input.value = percentages[0];
+    colorPosition1Input.value = percentages[1];
+    colorPosition2Input.value = percentages[2];
+    colorPosition3Input.value = percentages[3];
+    colorPosition4Input.value = percentages[4];
 }
 
 clipboard = () => {
